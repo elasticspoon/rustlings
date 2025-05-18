@@ -32,16 +32,9 @@ mod my_module {
             .map(|(line, command)| -> String {
                 match command {
                     Command::Uppercase => line.to_uppercase(),
-                    Command::Trim => String::from(line.trim()),
+                    Command::Trim => line.trim().into(),
                     Command::Append(count) => {
-                        format!(
-                            "{}{}",
-                            line,
-                            (0..count)
-                                .map(|_| "bar".to_string())
-                                .collect::<Vec<String>>()
-                                .concat()
-                        )
+                        format!("{}{}", line, "bar".repeat(count))
                     }
                 }
             })

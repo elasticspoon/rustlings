@@ -33,10 +33,11 @@ mod my_module {
                 match command {
                     Command::Uppercase => line.to_uppercase(),
                     Command::Trim => line.trim().into(),
-                    Command::Append(count) => {
-                        format!("{}{}", line, "bar".repeat(count))
-                    }
+                    Command::Append(count) => line + &"bar".repeat(count),
                 }
+                // Command::Append(count) => {
+                //     format!("{}{}", line, "bar".repeat(count))
+                // }
             })
             .collect()
     }

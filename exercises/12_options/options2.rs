@@ -1,4 +1,13 @@
 fn main() {
+    let range = 10;
+
+    let mut optional_integers: Vec<Option<i8>> = vec![None];
+
+    for i in 1..=range {
+        optional_integers.push(Some(i));
+    }
+
+    println!("{:?}", optional_integers);
     // You can optionally experiment here.
 }
 
@@ -9,8 +18,7 @@ mod tests {
         let target = "rustlings";
         let optional_target = Some(target);
 
-        // TODO: Make this an if-let statement whose value is `Some`.
-        word = optional_target {
+        if let Some(word) = optional_target {
             assert_eq!(word, target);
         }
     }
@@ -26,13 +34,25 @@ mod tests {
 
         let mut cursor = range;
 
-        // TODO: Make this a while-let statement. Remember that `Vec::pop()`
-        // adds another layer of `Option`. You can do nested pattern matching
-        // in if-let and while-let statements.
-        integer = optional_integers.pop() {
-            assert_eq!(integer, cursor);
-            cursor -= 1;
+        // pop values from Vec until the popped value is a None
+        // which means that there is nothing left in the vec.
+        // If the value the vec pops is a none ex: [None].pop
+        // it will actuallu pop Option(None). Thats why the
+        // additional if let unwrapping is needed.
+        while let Some(val) = optional_integers.pop() {
+            // moves the cursor only if the value that got popped
+            // was a Some
+            if let Some(integer) = val {
+                assert_eq!(integer, cursor);
+                cursor -= 1;
+            }
         }
+
+        // a better way is to use nested pattern matching
+        // while let Some(Some(integer)) = optional_integers.pop() {
+        //     assert_eq!(integer, cursor);
+        //     cursor -= 1;
+        // }
 
         assert_eq!(cursor, 0);
     }

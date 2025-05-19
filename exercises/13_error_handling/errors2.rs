@@ -20,15 +20,20 @@ fn total_cost(item_quantity: &str) -> Result<i32, ParseIntError> {
     let processing_fee = 1;
     let cost_per_item = 5;
 
-    // TODO: Handle the error case as described above.
-    let qty = item_quantity.parse::<i32>();
-
+    let qty = item_quantity.parse::<i32>()?;
     Ok(qty * cost_per_item + processing_fee)
+    // item_quantity
+    //     .parse::<i32>()
+    //     .map(|v| v * cost_per_item + processing_fee)
+
+    // let qty = item_quantity.parse::<i32();
+    // match qty {
+    //     Ok(parsed_quantity) => Ok(parsed_quantity * cost_per_item + processing_fee),
+    //     Err(err) => Err(err),
+    // }
 }
 
-fn main() {
-    // You can optionally experiment here.
-}
+fn main() {}
 
 #[cfg(test)]
 mod tests {

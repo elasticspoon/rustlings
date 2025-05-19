@@ -7,11 +7,12 @@ struct Point {
 fn main() {
     let optional_point = Some(Point { x: 100, y: 200 });
 
-    // TODO: Fix the compiler error by adding something to this match statement.
     match optional_point {
-        Some(p) => println!("Co-ordinates are {},{}", p.x, p.y),
+        Some(ref p) => println!("Co-ordinates are {},{}", p.x, p.y),
         _ => panic!("No match!"),
     }
 
+    // without the ref ownership of the point changes to p in the
+    // match statement, thus, we cannot use p here
     println!("{optional_point:?}"); // Don't change this line.
 }

@@ -1,9 +1,11 @@
 // Lifetimes are also needed when structs hold references.
+// They are needed to that we know how the lifetime of the
+// references within a struct relates to the references of
+// the data within it.
 
-// TODO: Fix the compiler errors about the struct.
-struct Book {
-    author: &str,
-    title: &str,
+struct Book<'a> {
+    author: &'a str,
+    title: &'a str,
 }
 
 fn main() {

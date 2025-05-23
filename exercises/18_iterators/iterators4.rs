@@ -1,8 +1,11 @@
 fn factorial(num: u64) -> u64 {
-    // TODO: Complete this function to return the factorial of `num` which is
-    // defined as `1 * 2 * 3 * … * num`.
-    // https://en.wikipedia.org/wiki/Factorial
-    //
+    // (1..=num).fold(1, |accum, val| accum * val)
+    (1..=num).product()
+    // if num > 0 {
+    //     num * factorial(num - 1)
+    // } else {
+    //     1
+    // }
     // Do not use:
     // - early returns (using the `return` keyword explicitly)
     // Try not to use:
